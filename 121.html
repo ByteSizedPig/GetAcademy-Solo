@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>121</title>
+</head>
+
+<body>
+    <div>
+        <button onclick="addCircle()">Legg til sirkel</button>
+        <input type="number" oninput="xValue = this.value">x koordinat</input>
+        <input type="number" oninput="yValue = this.value">y koordinat</input>
+
+        <section></section>
+
+        <select id="colorInput" onchange="bgColorChange()">
+            <option value="Red">Red</option>
+            <option value="green">Green</option>
+            <option value="blue">Blue</option>
+        </select>
+    </div>
+    <br />
+    <svg id="mySvg" width="800" height="600" style="background-color: lightgray;">
+    </svg>
+
+    <script>
+        let xValue = "";
+        let yValue = "";
+
+        function bgColorChange() {
+            let colorValue = document.getElementById('colorInput').value
+            document.getElementById('mySvg').style.backgroundColor = colorValue
+        }
+
+        function addCircleFromInput(x, y) {
+            document.getElementById('mySvg').innerHTML = /*HTML*/`
+          <circle cx="${x}" cy="${y}" r="40" stroke="green" stroke-width="4" fill="yellow"/>
+      `;
+        }
+        function addCircle() {
+            let x = xValue;
+            let y = yValue;
+            addCircleFromInput(x, y);
+        }
+    </script>
+</body>
+
+</html>
