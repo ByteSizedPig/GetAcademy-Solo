@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #board {
+            display: grid;
+            grid-template-columns: repeat(8, 100px);
+            grid-template-rows: repeat(8, 100px);
+        }
+
+        #board>div {
+            border: 1px solid lightblue;
+        }
+
+        .selected {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="board">
+    </div>
+    <button onclick="moveDown()">ned</button>
+    <button onclick="moveUp()">opp</button>
+    <section></section>
+    <button onclick="moveLeft()">venstre</button>
+    <button onclick="moveRight()">høyre</button>
+    <script>
+        let selectedSquareIndex = 7;
+        const size = 64;
+        const selected = '<div class="selected"></div>';
+        const unSelected = '<div></div>';
+
+        showBoard();
+
+        function showBoard() {
+            const start = selectedSquareIndex * unSelected.length
+            const end = (size - 1) * unSelected.length - selectedSquareIndex * unSelected.length
+            console.log(start)
+            console.log(end)
+            addSquares(start, end)
+        }
+
+        function addSquares(start, end) {
+            document.getElementById('board').innerHTML = ''.padStart(start, unSelected);
+            document.getElementById('board').innerHTML += selected;
+            document.getElementById('board').innerHTML += ''.padEnd(end, unSelected);
+            console.log(start);
+            console.log(end);
+        }
+
+        function moveDown() {
+            if (selectedSquareIndex <= 55 && selectedSquareIndex >= 0) {
+                selectedSquareIndex += 8
+            }
+            showBoard()
+            console.log(selectedSquareIndex)
+        }
+        function moveUp() {
+            if (selectedSquareIndex <= 63 && selectedSquareIndex >= 8) {
+                selectedSquareIndex -= 8
+            }
+            showBoard()
+            console.log(selectedSquareIndex)
+        }
+        function moveLeft() {
+            if (selectedSquareIndex <= 63 && selectedSquareIndex >= 1) {
+                selectedSquareIndex -= 1
+            }
+            showBoard()
+            console.log(selectedSquareIndex)
+        }
+        function moveRight() {
+            if (selectedSquareIndex <= 62 && selectedSquareIndex >= 0) {
+                selectedSquareIndex += 1
+            }
+            showBoard()
+            console.log(selectedSquareIndex)
+        }
+    </script>
+</body>
+
+</html>
