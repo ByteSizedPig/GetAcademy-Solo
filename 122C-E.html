@@ -8,24 +8,34 @@
 </head>
 
 <body id="view">
-    <script>
-        //Model
-        let currentFontSize = 12;
-        
+    <div id="myText" style="font-size: ${currentFontSize}pt; font-Family: Arial">
+        chunga bey achi-baba
+    </div>
 
-        //View
-        view();
-        function view() {
-            document.getElementById("view").innerHTML = `
-            <div id="myText">
-            chunga bey achi-baba
-            </div>
-            `
+    <button onclick="changeFontSize(currentFontSize += 1)">øk font størrelse</button>
+    <button onclick="changeFontSize(currentFontSize -= 1)">senk font størrelse</button>
+    <section>
+        <select id="fontFamilySelect" onchange="changeFontFamily(this.value)">
+            <option>Arial</option>
+            <option>Serif</option>
+            <option>Sans-Serif</option>
+        </select>
+    </section>
+
+
+
+    <script>
+        let currentFontSize = 16;
+
+        function changeFontSize(sizeChange) {
+            document.getElementById("myText").style.fontSize = `${sizeChange}pt`
+            console.log(sizeChange)
+
         }
 
-
-        //Controller
-
+        function changeFontFamily(fontFamilyChange) {
+            document.getElementById("myText").style.fontFamily = `${fontFamilyChange}`
+        }
     </script>
 </body>
 
