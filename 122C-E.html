@@ -8,7 +8,7 @@
 </head>
 
 <body id="view">
-    <div id="myText" style="font-size: 16pt; font-Family: Arial">
+    <div id="myText" style="font-size: 16pt; font-Family: Arial; background-color:rgb(125, 125, 125);">
         chunga bey achi-baba
     </div>
 
@@ -18,23 +18,50 @@
         <select id="fontFamilySelect" onchange="changeFontFamily(this.value)">
             <option>Arial</option>
             <option>Serif</option>
-            <option>Sans-Serif</option>
+            <option>Lucida Console</option>
+            <option>monospace</option>
         </select>
     </section>
 
 
+    <section>
+    <p>background color controls</p>
+    <button onclick="backgroundColorChange(5,0,0)">red +5</button>
+    <button onclick="backgroundColorChange(0,5,0)">green +5</button>
+    <button onclick="backgroundColorChange(0,0,5)">blue +5</button>
+    </section>
+
+    <section>
+    <button onclick="backgroundColorChange(-5,0,0)">red -5</button>
+    <button onclick="backgroundColorChange(0,-5,0)">green -5</button>
+    <button onclick="backgroundColorChange(0,0,-5)">blue -5</button>
+    </section>
 
     <script>
         let currentFontSize = 16;
+        let redValue = 125;
+        let greenValue = 125;
+        let blueValue = 125;
+
 
         function changeFontSize(sizeChange) {
             document.getElementById("myText").style.fontSize = `${sizeChange}pt`
             console.log(sizeChange)
-
         }
 
         function changeFontFamily(fontFamilyChange) {
             document.getElementById("myText").style.fontFamily = `${fontFamilyChange}`
+        }
+
+        function backgroundColorChange(red, green, blue) {
+            redValue += red
+            greenValue += green
+            blueValue += blue
+            document.getElementById("myText").style.backgroundColor = `rgb(${redValue}, ${greenValue}, ${blueValue})`
+            console.log(redValue)
+            console.log(greenValue)
+            console.log(blueValue)
+            console.log(document.getElementById("myText"))
         }
     </script>
 </body>
