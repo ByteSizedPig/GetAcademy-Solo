@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="view">
+    <script>
+        let number = 50
+        let bgColor = "darkgray"
+
+        view()
+        function view() {
+            document.getElementById("view").innerHTML =/*html*/ `
+            <div id="myDiv" style="background-color: ${bgColor};">
+                <p> ${number}</p>
+                <input id="range" type="range" min="0" max="100" value="${number}" onchange="changeDivColor(this.value)">
+            </div>
+            `
+        console.log(document.getElementById("range").value)
+        }
+        
+        function changeDivColor(value) {
+            number = Number(value)
+            if(value <= 30){
+                bgColor = 'red'
+            }
+            else if(value >= 70) {
+                bgColor = 'green'
+            }
+            else {
+                bgColor = 'yellow'
+            }
+            view()
+        }
+
+    </script>
+</body>
+
+</html>
