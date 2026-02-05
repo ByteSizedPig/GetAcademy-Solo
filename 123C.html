@@ -23,9 +23,45 @@
 
 <body>
     <div id="app"></div>
+    <button onclick="drawTrafficLight()">Neste</button>
+    
 
     <script>
-        document.getElementById('app').innerHTML = createTrafficLight(true, true, false);
+        let phase = 0
+        const app = "document.getElementById('app').innerHTML ="
+
+        
+      
+            
+        
+
+
+
+
+        document.getElementById('app').innerHTML += createTrafficLight(true, true, false);
+
+        function drawTrafficLight() {
+            console.log("functioning")
+            
+            if (phase == 0){
+                document.getElementById('app').innerHTML = createTrafficLight(true, false, false);
+                phase++;
+            }
+            else if(phase == 1) {
+                document.getElementById('app').innerHTML = createTrafficLight(true, true, false);
+                phase++;
+            }
+            else if(phase == 2) {
+                document.getElementById('app').innerHTML = createTrafficLight(false, false, true);
+                phase++;
+            }
+            else{
+                document.getElementById('app').innerHTML = createTrafficLight(false, true, false);
+                phase = 0;
+            }
+            
+        }
+
 
         function createLightDiv(color) {
             return /*HTML*/`<div class="light" style="background-color: ${color};"></div>`;
