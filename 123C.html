@@ -28,35 +28,26 @@
 
     <script>
         let phase = 0
-        const app = "document.getElementById('app').innerHTML ="
-
-        
-      
-            
-        
-
-
-
+        const app = document.getElementById('app')
 
         document.getElementById('app').innerHTML += createTrafficLight(true, true, false);
 
         function drawTrafficLight() {
             console.log("functioning")
-            
-            if (phase == 0){
-                document.getElementById('app').innerHTML = createTrafficLight(true, false, false);
-                phase++;
+            if (phase === 0){
+                app.innerHTML = createTrafficLight(true, false, false); 
+                phase++
             }
-            else if(phase == 1) {
-                document.getElementById('app').innerHTML = createTrafficLight(true, true, false);
-                phase++;
+            else if(phase === 1) {
+                app.innerHTML = createTrafficLight(true, true, false);
+                phase++
             }
-            else if(phase == 2) {
-                document.getElementById('app').innerHTML = createTrafficLight(false, false, true);
-                phase++;
+            else if(phase === 2) {
+                app.innerHTML = createTrafficLight(false, false, true);
+                phase++
             }
             else{
-                document.getElementById('app').innerHTML = createTrafficLight(false, true, false);
+                app.innerHTML = createTrafficLight(false, true, false);
                 phase = 0;
             }
             

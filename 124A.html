@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: lightgray;">
+
+    <div id="view"></div>
+    
+    <script>
+        let productName = "";
+        let price = 0;
+        let amount = 0;
+
+        function updateView(){
+            document.getElementById("view").innerHTML = /*HTML*/`
+            <input onchange="productName = this.value">product
+            <input onchange="price = this.value">price
+            <input onchange="amount = this.value">amount
+            
+            <button onclick="infoAggregation(productName,price,amount)">legg i handlekurv</button>
+            <button onclick="postInfo()">legg i handlekurv</button>
+            `
+        }
+        updateView()
+
+
+        function infoAggregation(name, price, amount) {
+            console.log("aggregation")
+            return `${amount} stk.${name} til ${price} = ${amount + price}`
+        }
+
+        function postInfo() {
+            console.log("postInfo")
+            document.getElementById("view").innerHTML += `
+            <div id="productOverview">${infoAggregation(productName,price,amount)}</div>
+            `
+        }
+    </script>
+</body>
+</html>
