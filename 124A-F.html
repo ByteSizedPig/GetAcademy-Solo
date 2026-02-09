@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: lightgray;">
+
+    <div id="view"></div>
+    
+    <script>
+        let productName = "";
+        let price = 0;
+        let amount = 0;
+
+        function updateView(){
+            document.getElementById("view").innerHTML = /*HTML*/`
+            <input onchange="productName = this.value">product
+            <input onchange="price = this.value">price
+            <input onchange="amount = this.value">amount
+            <button onclick="postInfo()">legg i handlekurv</button>
+            ${createDiv("test", "blue", "white")}
+            
+            ${createGrid(3, 2, createDiv('Kol 1 rad 1')
+            + createDiv('Kol 2 rad 1')
+            + createDiv('Kol 3 rad 1')
+            + createDiv('Kol 1 rad 2')
+            + createDiv('Kol 2 rad 2')
+            + createDiv('Kol 3 rad 2')
+            )}
+            
+            `
+            
+        }
+        updateView()
+
+
+        function infoSummary(name, price, amount) {
+            console.log("aggregation")
+            return `${amount} stk.${name} til ${price} = ${+amount * +price}kr`
+        }
+
+        function postInfo() {
+            console.log("postInfo")
+            document.getElementById("view").innerHTML += `
+            <div id="productOverview">${infoSummary(productName,price,amount)}</div>
+            `
+        }
+
+        function temperatureConversion(temperature,toConvert) {
+            if(toConvert === "c" || toConvert === "C") {
+                return +temperature * 9/5 + 32
+            }
+            else if (toConvert === "f" || toConvert === "F") {
+                return (+temperature - 32) * 5/9
+            }
+            else {
+                alert("spesifiser hvilken temperatur du vil konvertere fra")
+            }  
+        }
+
+
+        function createDiv(text, foregroundColor, backgroundColor) {
+            if (foregroundColor && backgroundColor) {
+                return /*HTML*/ `<div style=foregroundColor: ${foregroundColor}; backgroundColor: ${backgroundColor}>${text}</div>`
+            }
+            else if(!foregroundColor || !backgroundColor) {
+                return /*HTML*/ `<div>${text}</div>`
+            }
+        }
+
+        function createGrid(columnCount, rowCount, innerHtml) {
+            return /*HTML*/` <div style="display: grid; grid-template-columns: repeat(${columnCount}, 50px); grid-template-rows: repeat(${rowCount}, auto)">${innerHtml}</div>
+            
+            `
+        }
+    </script>
+</body>
+</html>
