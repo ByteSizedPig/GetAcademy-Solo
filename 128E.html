@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app"></div>
+    <script>
+        let startTime = ""
+        const blank = `<div style="background-color: white; padding-top: 50px; border: .15rem solid"></div>`
+        const highlighted = `<div style="background-color: yellow; padding-top: 50px; border: .15rem solid" onclick="calculateReactionTime()"></div>`   
+        
+
+        updateView()
+        function updateView() {
+            startTimer()
+            document.getElementById("app").innerHTML = /*HTML*/`
+            <div style="display: grid; grid-template-columns: repeat(2, 70px)">
+                ${returnSquare(Math.ceil(Math.random() *4))}
+                
+            </div>
+            <div id="resultsBoard" style="padding: auto;width: 100px; border: 1px solid; background-color: rgb(215,215,215);"></div>
+            `
+            
+        }
+
+        function returnSquare(number) {
+            if (number === 1) {
+                return `${highlighted} ${blank} ${blank} ${blank}`;
+            }
+            else if (number === 2) {
+                return `${blank} ${highlighted} ${blank} ${blank}`;
+            }
+            else if (number === 3) {
+                return `${blank} ${blank} ${highlighted} ${blank}`;
+            }
+            else if (number === 4) {
+                return `${blank} ${blank} ${blank} ${highlighted}`;
+            }
+        }
+
+        function calculateReactionTime() {
+            let timeOfClick = new Date().getTime()
+            let reactionTime = (timeOfClick - startTime) / 1000
+            console.log(reactionTime)
+            updateResults(reactionTime)
+            updateView()
+        }
+
+        function startTimer() {
+        startTime = new Date().getTime()   
+        }
+
+        function updateResults(result) {
+            document.getElementById("resultsBoard").innerHTML += /*HTML*/`${result} Seconds`
+        }
+    </script>
+
+</body>
+
+</html>

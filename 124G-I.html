@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app"></div>
+    <button onclick="showSelectedDate()">vis valgt dato</button>
+
+
+    <script>
+        showDateSelector()
+        function showDateSelector() {
+            document.getElementById("app").innerHTML =
+            createNumberSelector(9, 1, 31, 'day')
+            + createNumberSelector(2, 1, 12, 'month')
+            + createNumberSelector(2026, 2020, 2026, 'year')
+        }
+
+        function createNumberSelector(number, minimum, maximum, name) {
+            if (number <= 1) {
+            return /*HTML*/`
+            <div id="${name}Main" style="display: flex;align-items: center;">
+                <div id="${name}" style="font-size: 300%;">${number}</div>
+                <div style="display: flex; flex-direction: column;align-items: flex-start;">
+                    <button onclick="selectDay(2)">▲</button>
+                    <button onclick="selectDay(0)" disabled>▼</button>
+                </div>
+            </div>`
+            }
+            else if(number >= 31) {
+            return /*HTML*/`
+            <div id="${name}Main" style="display: flex;align-items: center;">
+                <div id="${name}" style="font-size: 300%;">${number}</div>
+                <div style="display: flex; flex-direction: column;align-items: flex-start;">
+                    <button onclick="selectDay(2)" disabled>▲</button>
+                    <button onclick="selectDay(0)">▼</button>
+                </div>
+            </div>`
+            }
+            else {
+                return /*HTML*/`
+            <div id="${name}Main" style="display: flex;align-items: center;">
+                <div id="${name}" style="font-size: 300%;">${number}</div>
+                <div style="display: flex; flex-direction: column;align-items: flex-start;">
+                    <button onclick="selectDay(2)">▲</button>
+                    <button onclick="selectDay(0)">▼</button>
+                </div>
+            </div>`
+            }
+        }
+
+        function showSelectedDate() {
+            const day = document.getElementById("day").innerHTML
+            const month = document.getElementById("month").innerHTML
+            const year = document.getElementById("year").innerHTML
+
+            return document.getElementById("app").innerHTML += /*HTML*/`<div style="font-size: 30px">valgt dato er: ${day}.${month}.${year}</div>`
+        }
+
+
+    </script>
+</body>
+
+</html>

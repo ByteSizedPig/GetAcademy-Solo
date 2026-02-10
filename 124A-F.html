@@ -72,7 +72,7 @@
 
         function createGrid(columnCount, rowCount, innerHtml) {
             return /*HTML*/` <div style="display: grid; 
-            grid-template-columns: repeat(${columnCount}, 50px); 
+            grid-template-columns: repeat(${columnCount}, auto); 
             grid-template-rows: repeat(${rowCount}, auto)">${innerHtml}</div>;
             `
         }
