@@ -4,69 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>128E</title>
+    <style>
+        .blank {
+            background-color: white;
+            padding-top: 50px;
+            border: .15rem solid
+        }
+
+        .highlighted {
+            background-color: yellow;
+            padding-top: 50px;
+            border: .15rem solid
+        }
+
+        .app {
+            display: grid;
+            grid-template-columns: repeat(2, 70px);
+            grid-template-rows: repeat(2, 70px)
+        }
+
+        .results {
+            padding: auto;
+            width: 50px;
+            border: 1px solid;
+            background-color: rgb(215, 215, 215);
+        }
+    </style>
 </head>
 
 <body>
 
     <div id="app"></div>
     <script>
-        const blank = `<div style="background-color: white; padding-top: 50px; border: .15rem solid"></div>`;
-        const highlighted = `<div style="background-color: yellow; padding-top: 50px; border: .15rem solid" onclick="calculateReactionTime()"></div>`;
+        let startTime = 0;
+        const blank = `<div class="blank"></div>`;
+        const highlighted = `<div class="highlighted" onclick="calculateReactionTime()"></div>`;
         let actionTime = "";
-        const squares = [highlighted, blank, blank, blank]
+        //main array that will not be changed directly
+        const squares = [blank, blank, blank, blank];
+
 
 
         updateView()
         function updateView() {
             document.getElementById("app").innerHTML = /*HTML*/`
-            <div style="display: grid; grid-template-columns: repeat(2, 70px); grid-template-rows: repeat(2, 70px)">
-                ${returnSquare(Math.ceil(Math.random() * 4))}
-                ${startTimer()}
+            <div class="app">
+                ${returnSquare(Math.floor(Math.random() * 4))}
             </div>
-            <div id="resultsBoard" style="padding: auto;width: 50px; border: 1px solid; background-color: rgb(215,215,215);">${actionTime}</div>
+
+            <div id="resultsBoard" class="results">Results<br>${actionTime}</div>
             `
-            
+            startTimer();
         }
+
         function returnSquare(number) {
-            switch(number){
-                case 1: 
-                    squares[0] = highlighted
-                    return squares;
-                    squares[0] = blank
-                    break;
-                case 2:
-                    squares[1] = highlighted
-                    return squares;
-                    squares[1] = blank
-                    break;
-                case 3:
-                    squares[2] = highlighted
-                    return squares;
-                    squares[2] = blank
-                    break;
-                case 4:
-                    squares[3] = highlighted
-                    return squares;
-                    squares[3] = blank
-                    break;
-            }
+            //makes a copy of the data from main array that will be changed
+            let newSquares = squares.slice();
+            //uses number to target an index in array and swap it with the "highlighted" variable
+            newSquares[number] = highlighted;
+            //combines all array items into one string, this prevents the commas from appearing inside the template literal
+            return newSquares.join("");
         }
+
 
         function calculateReactionTime() {
-            let timeOfClick = new Date().getTime()
-            let reactionTime = (timeOfClick - startTime) / 1000
-            updateResults(reactionTime)
-            updateView()
-        }
+            let timeOfClick = new Date().getTime();
+            let reactionTime = (timeOfClick - startTime) / 1000;
+            updateResults(reactionTime);
+            updateView();
+        };
 
         function updateResults(result) {
-            actionTime += `${result}<br>`
-        }
+            actionTime += `${result}<br>`;
+        };
 
         function startTimer() {
-            startTime = new Date().getTime()
-        }
+            startTime = new Date().getTime();
+        };
     </script>
 
 </body>
