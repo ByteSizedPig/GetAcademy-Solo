@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>151</title>
+</head>
+<body>
+    
+    <div id="app"></div>
+
+    <script>
+        const app = document.getElementById("app");
+        const outputLog = document.getElementById("outputField")
+
+        let maxLength = 0;
+        let input = "";
+        let output = "";
+        let repetition = 1;
+
+        updateApp()
+        function updateApp() {
+            app.innerHTML  = /*HTML*/`
+            <input type="text" onchange="input=this.value">
+            <input type="number" oninput="repetition=this.value">
+            <button onclick="repeatText()">gjenta</button
+
+            <div id="outputField">${output}</div>
+            `
+        }
+
+
+        function repeatText() {
+            let html = "";
+            for (let i=0; i < +repetition; i++){
+                html += "<br>" + input;
+            }
+            console.log(html)
+            output = html
+            updateApp()
+        }
+
+    </script>
+
+</body>
+</html>
